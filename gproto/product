@@ -1,0 +1,24 @@
+package gproto
+
+import (
+	"context"
+	"github.com/Paulo-Lopes-Estevao/webserver-example-go/gproto/pb"
+	"github.com/Paulo-Lopes-Estevao/webserver-example-go/model"
+)
+
+type ProducService struct {
+	pb.UnimplementedProductServiceServer
+	Products *model.Products
+}
+
+func (p *ProducService) CreateProduct(ctx context.Context, in *pb.Product) (*pb.Product, error)  {
+	product := model.NewProduct()
+	product.Name = in.Name
+	p.Produts.Add(product)
+
+	return &pb.Product{
+		Id : product.ID,
+		Name: product.Name,
+	},nil
+
+}
