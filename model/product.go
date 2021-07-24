@@ -8,10 +8,10 @@ type Product struct {
 }
 
 type Products struct {
-	Product []Product
+	Product []*Product `json:"products"`
 }
 
-func (receiver Products) Add(product Product)  {
+func (receiver Products) Add(product *Product)  {
 	receiver.Product = append(receiver.Product, product)
 }
 
