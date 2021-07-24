@@ -3,11 +3,11 @@ package http
 import (
 	"github.com/labstack/echo/v4"
 	"net/http"
-	"github.com/Paulo-Lopes-Estevao/webserver-example-go/webserver/model"
+	"github.com/Paulo-Lopes-Estevao/webserver-example-go/model"
 )
 
 type WebServer struct {
-	Products *model.Product
+	Products *model.Products
 }
 
 func NewWebServer() *WebServer  {
@@ -31,5 +31,5 @@ func (w WebServer)createProduct(c echo.Context) error  {
 		return err
 	}
 	w.Products.Add(product)
-	return e.JSON(http.StatusCreated,product)
+	return c.JSON(http.StatusCreated, product)
 }
